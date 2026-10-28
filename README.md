@@ -132,21 +132,21 @@ Real issues encountered while building this lab and how they were resolved:
 - **Wrong Ubuntu version:** The latest ISO installed Ubuntu 26.04, which is not
   in Wazuh 4.14's supported list, causing `wazuh-manager` to fail to start.
   Resolved by reinstalling Ubuntu Server 24.04 LTS.
-  > release.ubuntu.com/24.04
-  > ubuntu-24.04.x-live-server-amd64.iso download
+  > 1. release.ubuntu.com/24.04
+  > 2. ubuntu-24.04.x-live-server-amd64.iso download
 - **Root partition too small:** The installer allocated only part of the disk to
   the root LVM volume. Extended it with `lvextend` + `resize2fs`.
-  > sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
-  > sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
-  > Check : df -h /
+  > 1. sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+  > 2. sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+  > 3. Check : df -h /
 - **Network connectivity:** Host-to-VM traffic failed under NAT (missing VMnet8
   adapter in VMware Player). Switched to bridged networking and aligned all VMs
   to the same subnet.
 - **Manager API not ready:** The dashboard showed `wazuh-modulesd->stopped`.
   Resolved by restarting the `wazuh-manager` service.
-  > sudo /var/ossec/bin/wazuh-control status
-  > sudo systemctl restart wazuh-manager
-  > check : sudo /var/ossec/bin/wazuh-control status
+  > 1. sudo /var/ossec/bin/wazuh-control status
+  > 2. sudo systemctl restart wazuh-manager
+  > 3. check : sudo /var/ossec/bin/wazuh-control status
 
 ---
 
