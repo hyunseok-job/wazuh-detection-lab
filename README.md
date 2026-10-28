@@ -3,11 +3,10 @@
 > A home SOC lab for hands-on detection engineering: building a Wazuh SIEM from
 > scratch, simulating an SSH brute-force attack, and analyzing the resulting alerts.
 
-<!-- TODO: 한 줄 더 — 왜 이걸 만들었는지 당신의 언어로. 예시:
 "I work as a SOC analyst and built this lab to practice detection and tuning
-outside of production." 아래 빈 줄에 영어로 직접 써보세요. -->
+outside of production."
 
-**About me:** [ 여기에 1~2문장. 현재 보안관제 경력 + 이 랩을 만든 이유 ]
+**About me:** [ 여기에 1~2문장. 현재 보안관제 경력 + 이 랩을 만든 이유, edit ]
 
 ---
 
@@ -37,10 +36,6 @@ attack simulation, Linux administration, network troubleshooting.
                                                      │  - indexer           │
                                                      │  - dashboard         │
                                                      └──────────────────────┘
-```
-
-<!-- TODO: 캡처가 준비되면 이 자리에 네트워크 다이어그램 이미지로 교체해도 좋습니다.
-지금은 위 ASCII 그림으로 충분합니다. -->
 
 ---
 
@@ -132,8 +127,7 @@ requirement — the way a security team justifies monitoring to auditors.
 
 Real issues encountered while building this lab and how they were resolved:
 
-<!-- TODO: 아래는 당신이 실제로 겪은 것들입니다. 각 항목을 당신 언어로 다듬으세요.
-영어가 어색해도 괜찮습니다 — 직접 쓴 흔적이 오히려 신뢰를 줍니다. -->
+<!-- edit -->
 
 - **Wrong Ubuntu version:** The latest ISO installed Ubuntu 26.04, which is not
   in Wazuh 4.14's supported list, causing `wazuh-manager` to fail to start.
