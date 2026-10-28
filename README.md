@@ -100,7 +100,8 @@ actionable "this is an attack" signal.
 
 ![dashboard alerts](screenshots/02-dashboard-alerts.png)
 
-![alert detail](screenshots/03-alert-detail_5.png)
+![alert detail](screenshots/04-alert-detail_5.png)
+
 ![alert detail](screenshots/03-alert-detail_10.png)
 
 ---
