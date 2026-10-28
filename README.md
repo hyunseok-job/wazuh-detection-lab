@@ -6,7 +6,7 @@
 "I work as a SOC analyst and built this lab to practice detection and tuning
 outside of production."
 
-**About me:** [ 여기에 1~2문장. 현재 보안관제 경력 + 이 랩을 만든 이유, edit ]
+**About me:** [edit ]
 
 ---
 
@@ -29,9 +29,9 @@ attack simulation, Linux administration, network troubleshooting.
 
 ```
 ┌─────────────────┐         SSH brute force          ┌──────────────────────┐
-│  Kali Linux     │  ──────────────────────────────▶ │  Ubuntu Server 24.04 │
+│  Kali Linux     │  ──────────────────────────────▶│  Ubuntu Server 24.04 │
 │  (attacker)     │         (hydra, port 22)         │  Wazuh all-in-one    │
-│  192.0.2.70     │                                  │  192.0.2.50          │
+│  172.30.1.70    │                                  │  172.30.1.50         │
 └─────────────────┘                                  │  - manager           │
                                                      │  - indexer           │
                                                      │  - dashboard         │
@@ -61,7 +61,7 @@ From the Kali host, an SSH brute-force attack was launched against the Wazuh
 server using `hydra`:
 
 ```bash
-hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://192.0.2.50 -t 4 -f
+hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://172.30.1.50 -t 4 -f
 ```
 
 - `-l admin` — target a non-existent username
@@ -98,11 +98,10 @@ once failures accumulated, a correlation rule raised the severity to level 10.
 This is the core of detection engineering — turning raw events into an
 actionable "this is an attack" signal.
 
-<!-- TODO: 캡처 2 — 대시보드 Threat Hunting, 경보 표 (2502/5710 보이게) -->
 ![dashboard alerts](screenshots/02-dashboard-alerts.png)
 
-<!-- TODO: 캡처 3 — 경보 하나를 펼친 JSON 상세 (rule.id, data.srcip 등 필드) -->
-![alert detail](screenshots/03-alert-detail.png)
+![alert detail](screenshots/03-alert-detail_5.png)
+![alert detail](screenshots/03-alert-detail_10.png)
 
 ---
 
