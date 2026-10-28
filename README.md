@@ -82,15 +82,15 @@ single failure to a correlated brute-force event.
 
 ```
 Rule: 5710 (level 5) -> 'sshd: Attempt to login using a non-existent user'
-Src IP: 192.0.2.70
-Oct 28 07:35:51 wazuh sshd[25469]: Failed password for invalid user admin from 192.0.2.70
+Src IP: 172.30.1.70
+Oct 28 07:35:51 wazuh sshd[25469]: Failed password for invalid user admin from 172.30.1.70
 ```
 
 ### Correlated failures — Rule 2502 (level 10)
 
 ```
-Rule: 2502 (level 10) -> 'syslog: User missed the password more than one time'
-Oct 28 07:39:59 wazuh sshd[31075]: PAM 5 more authentication failures; rhost=192.0.2.70
+Rule: 1512 (level 10) -> 'sshd: brute force trying to get access to the system. Non existent user.'
+Oct 28 07:42:18 wazuh sshd[34539]: Failed password for invalid user admin from 172.30.1.70 port 47554 ssh2
 ```
 
 **Key point:** the same source IP triggered a single-event rule (level 5) and,
@@ -132,13 +132,21 @@ Real issues encountered while building this lab and how they were resolved:
 - **Wrong Ubuntu version:** The latest ISO installed Ubuntu 26.04, which is not
   in Wazuh 4.14's supported list, causing `wazuh-manager` to fail to start.
   Resolved by reinstalling Ubuntu Server 24.04 LTS.
+  > release.ubuntu.com/24.04
+  > ubuntu-24.04.x-live-server-amd64.iso download
 - **Root partition too small:** The installer allocated only part of the disk to
   the root LVM volume. Extended it with `lvextend` + `resize2fs`.
+  > sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+  > sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+  > Check : df -h /
 - **Network connectivity:** Host-to-VM traffic failed under NAT (missing VMnet8
   adapter in VMware Player). Switched to bridged networking and aligned all VMs
   to the same subnet.
 - **Manager API not ready:** The dashboard showed `wazuh-modulesd->stopped`.
   Resolved by restarting the `wazuh-manager` service.
+  > sudo /var/ossec/bin/wazuh-control status
+  > sudo systemctl restart wazuh-manager
+  > check : sudo /var/ossec/bin/wazuh-control status
 
 ---
 
